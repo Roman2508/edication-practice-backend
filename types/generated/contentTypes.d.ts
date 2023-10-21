@@ -695,6 +695,11 @@ export interface ApiGroupGroup extends Schema.CollectionType {
         max: 9;
       }> &
       Attribute.DefaultTo<1>;
+    student: Attribute.Relation<
+      'api::group.group',
+      'manyToOne',
+      'api::student.student'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -722,7 +727,7 @@ export interface ApiPharmacyPharmacy extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
@@ -733,9 +738,9 @@ export interface ApiPharmacyPharmacy extends Schema.CollectionType {
     contractNumber: Attribute.String & Attribute.Required;
     brand: Attribute.String;
     number: Attribute.String;
+    logo: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::pharmacy.pharmacy',
       'oneToOne',
@@ -760,27 +765,22 @@ export interface ApiStudentStudent extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
-    fullname: Attribute.String & Attribute.Required;
-    group: Attribute.Relation<
-      'api::student.student',
-      'oneToOne',
-      'api::group.group'
-    >;
-    password: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 8;
-        maxLength: 20;
-      }>;
-    access: Attribute.Enumeration<['owner', 'student']> &
+    name: Attribute.String & Attribute.Required;
+    email: Attribute.Email & Attribute.Required & Attribute.Unique;
+    picture: Attribute.String;
+    access: Attribute.Enumeration<['student', 'owner']> &
       Attribute.Required &
       Attribute.DefaultTo<'student'>;
+    group: Attribute.Relation<
+      'api::student.student',
+      'oneToMany',
+      'api::group.group'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::student.student',
       'oneToOne',
