@@ -1,24 +1,15 @@
-import ComboboxFilter from "../ComboboxFilter";
+import ComboboxFilter from '../ComboboxFilter';
 
-import {
-  actionTypes,
-  getDefaultMessage,
-} from "./getActionTypesDefaultMessages";
+import { actionTypes, getDefaultMessage } from './getActionTypesDefaultMessages';
 
 const customOperators = [
   {
-    intlLabel: {
-      id: "components.FilterOptions.FILTER_TYPES.$eq",
-      defaultMessage: "is",
-    },
-    value: "$eq",
+    intlLabel: { id: 'components.FilterOptions.FILTER_TYPES.$eq', defaultMessage: 'is' },
+    value: '$eq',
   },
   {
-    intlLabel: {
-      id: "components.FilterOptions.FILTER_TYPES.$ne",
-      defaultMessage: "is not",
-    },
-    value: "$ne",
+    intlLabel: { id: 'components.FilterOptions.FILTER_TYPES.$ne', defaultMessage: 'is not' },
+    value: '$ne',
   },
 ];
 
@@ -38,27 +29,27 @@ const getDisplayedFilters = ({ formatMessage, users, canReadUsers }) => {
 
   const filters = [
     {
-      name: "action",
+      name: 'action',
       metadatas: {
         customOperators,
         label: formatMessage({
-          id: "Settings.permissions.auditLogs.action",
-          defaultMessage: "Action",
+          id: 'Settings.permissions.auditLogs.action',
+          defaultMessage: 'Action',
         }),
         customInput: ComboboxFilter,
         options: actionOptions,
       },
-      fieldSchema: { type: "enumeration" },
+      fieldSchema: { type: 'enumeration' },
     },
     {
-      name: "date",
+      name: 'date',
       metadatas: {
         label: formatMessage({
-          id: "Settings.permissions.auditLogs.date",
-          defaultMessage: "Date",
+          id: 'Settings.permissions.auditLogs.date',
+          defaultMessage: 'Date',
         }),
       },
-      fieldSchema: { type: "datetime" },
+      fieldSchema: { type: 'datetime' },
     },
   ];
 
@@ -71,8 +62,8 @@ const getDisplayedFilters = ({ formatMessage, users, canReadUsers }) => {
       if (user.firstname && user.lastname) {
         return formatMessage(
           {
-            id: "Settings.permissions.auditLogs.user.name",
-            defaultMessage: "{firstname} {lastname}",
+            id: 'Settings.permissions.auditLogs.user.fullname',
+            defaultMessage: '{firstname} {lastname}',
           },
           {
             firstname: user.firstname,
@@ -95,17 +86,17 @@ const getDisplayedFilters = ({ formatMessage, users, canReadUsers }) => {
     return [
       ...filters,
       {
-        name: "user",
+        name: 'user',
         metadatas: {
           customOperators,
           label: formatMessage({
-            id: "Settings.permissions.auditLogs.user",
-            defaultMessage: "User",
+            id: 'Settings.permissions.auditLogs.user',
+            defaultMessage: 'User',
           }),
           options: userOptions,
           customInput: ComboboxFilter,
         },
-        fieldSchema: { type: "relation", mainField: { name: "id" } },
+        fieldSchema: { type: 'relation', mainField: { name: 'id' } },
       },
     ];
   }
