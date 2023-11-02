@@ -41,7 +41,12 @@
       "mappedBy": "student"
     },
     "phone": {
+<<<<<<< HEAD
       "type": "biginteger"
+=======
+      "type": "biginteger",
+      "required": true
+>>>>>>> 30602b9525987cb08cb5323995aa7610f40c29f9
     }
   }
 }
