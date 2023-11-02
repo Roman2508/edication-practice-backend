@@ -734,11 +734,9 @@ export interface ApiPharmacyPharmacy extends Schema.CollectionType {
     city: Attribute.String & Attribute.Required;
     address: Attribute.String & Attribute.Required;
     places: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<1>;
-    location: Attribute.Text;
     contractNumber: Attribute.String & Attribute.Required;
-    brand: Attribute.String;
+    legalName: Attribute.String;
     number: Attribute.String;
-    logo: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -749,6 +747,45 @@ export interface ApiPharmacyPharmacy extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::pharmacy.pharmacy',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSelectedBasesOfPracticeSelectedBasesOfPractice
+  extends Schema.CollectionType {
+  collectionName: 'selected_bases_of_practices';
+  info: {
+    singularName: 'selected-bases-of-practice';
+    pluralName: 'selected-bases-of-practices';
+    displayName: 'selectedBasesOfPractice';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    student: Attribute.Relation<
+      'api::selected-bases-of-practice.selected-bases-of-practice',
+      'oneToOne',
+      'api::student.student'
+    >;
+    pharmacy: Attribute.Relation<
+      'api::selected-bases-of-practice.selected-bases-of-practice',
+      'oneToOne',
+      'api::pharmacy.pharmacy'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::selected-bases-of-practice.selected-bases-of-practice',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::selected-bases-of-practice.selected-bases-of-practice',
       'oneToOne',
       'admin::user'
     > &
@@ -779,6 +816,7 @@ export interface ApiStudentStudent extends Schema.CollectionType {
       'oneToMany',
       'api::group.group'
     >;
+    phone: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -814,6 +852,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::group.group': ApiGroupGroup;
       'api::pharmacy.pharmacy': ApiPharmacyPharmacy;
+      'api::selected-bases-of-practice.selected-bases-of-practice': ApiSelectedBasesOfPracticeSelectedBasesOfPractice;
       'api::student.student': ApiStudentStudent;
     }
   }

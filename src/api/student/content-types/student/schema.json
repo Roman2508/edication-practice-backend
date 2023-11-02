@@ -39,6 +39,9 @@
       "relation": "oneToMany",
       "target": "api::group.group",
       "mappedBy": "student"
+    },
+    "phone": {
+      "type": "biginteger"
     }
   }
 }

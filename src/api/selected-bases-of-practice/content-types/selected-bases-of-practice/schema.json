@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "selected_bases_of_practices",
+  "info": {
+    "singularName": "selected-bases-of-practice",
+    "pluralName": "selected-bases-of-practices",
+    "displayName": "selectedBasesOfPractice"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "student": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::student.student"
+    },
+    "pharmacy": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::pharmacy.pharmacy"
+    }
+  }
+}

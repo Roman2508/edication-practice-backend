@@ -29,26 +29,15 @@
             "required": true,
             "type": "integer"
         },
-        "location": {
-            "type": "text"
-        },
         "contractNumber": {
             "type": "string",
             "required": true
         },
-        "brand": {
+        "legalName": {
             "type": "string"
         },
         "number": {
             "type": "string"
-        },
-        "logo": {
-            "type": "media",
-            "multiple": false,
-            "required": false,
-            "allowedTypes": [
-                "images"
-            ]
         }
     }
 }
