@@ -362,126 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiGroupGroup extends Schema.CollectionType {
-  collectionName: 'groups';
-  info: {
-    singularName: 'group';
-    pluralName: 'groups';
-    displayName: 'group';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    courseNumber: Attribute.Integer &
-      Attribute.SetMinMax<{
-        max: 9;
-      }> &
-      Attribute.DefaultTo<1>;
-    student: Attribute.Relation<
-      'api::group.group',
-      'manyToOne',
-      'api::student.student'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::group.group',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::group.group',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPharmacyPharmacy extends Schema.CollectionType {
-  collectionName: 'pharmacies';
-  info: {
-    singularName: 'pharmacy';
-    pluralName: 'pharmacies';
-    displayName: 'pharmacy';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    city: Attribute.String & Attribute.Required;
-    address: Attribute.String & Attribute.Required;
-    places: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<1>;
-    location: Attribute.Text;
-    contractNumber: Attribute.String & Attribute.Required;
-    brand: Attribute.String;
-    number: Attribute.String;
-    logo: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::pharmacy.pharmacy',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::pharmacy.pharmacy',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiStudentStudent extends Schema.CollectionType {
-  collectionName: 'students';
-  info: {
-    singularName: 'student';
-    pluralName: 'students';
-    displayName: 'student';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    email: Attribute.Email & Attribute.Required & Attribute.Unique;
-    picture: Attribute.String;
-    access: Attribute.Enumeration<['student', 'owner']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'student'>;
-    group: Attribute.Relation<
-      'api::student.student',
-      'oneToMany',
-      'api::group.group'
-    >;
-    phone: Attribute.BigInteger & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::student.student',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::student.student',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -797,7 +677,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-<<<<<<< HEAD
 export interface ApiGroupGroup extends Schema.CollectionType {
   collectionName: 'groups';
   info: {
@@ -937,7 +816,8 @@ export interface ApiStudentStudent extends Schema.CollectionType {
       'oneToMany',
       'api::group.group'
     >;
-    phone: Attribute.BigInteger;
+    phone: Attribute.String;
+    middleName: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -955,8 +835,6 @@ export interface ApiStudentStudent extends Schema.CollectionType {
   };
 }
 
-=======
->>>>>>> 30602b9525987cb08cb5323995aa7610f40c29f9
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -967,22 +845,16 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::group.group': ApiGroupGroup;
-      'api::pharmacy.pharmacy': ApiPharmacyPharmacy;
-      'api::student.student': ApiStudentStudent;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-<<<<<<< HEAD
       'api::group.group': ApiGroupGroup;
       'api::pharmacy.pharmacy': ApiPharmacyPharmacy;
       'api::selected-bases-of-practice.selected-bases-of-practice': ApiSelectedBasesOfPracticeSelectedBasesOfPractice;
       'api::student.student': ApiStudentStudent;
-=======
->>>>>>> 30602b9525987cb08cb5323995aa7610f40c29f9
     }
   }
 }
