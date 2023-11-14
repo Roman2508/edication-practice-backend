@@ -42,9 +42,12 @@
     },
     "phone": {
       "type": "string"
+<<<<<<< HEAD
     },
     "middleName": {
       "type": "string"
+=======
+>>>>>>> f9c787642c4fad59a0b67b5ed2f527f6a8bfd400
     }
   }
 }
