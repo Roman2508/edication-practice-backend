@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "practice_types",
+  "info": {
+    "singularName": "practice-type",
+    "pluralName": "practice-types",
+    "displayName": "PracticeType",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}

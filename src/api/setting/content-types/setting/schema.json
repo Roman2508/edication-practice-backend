@@ -1,0 +1,41 @@
+{
+  "kind": "singleType",
+  "collectionName": "settings",
+  "info": {
+    "singularName": "setting",
+    "pluralName": "settings",
+    "displayName": "setting",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "canStudentSelectPracticeBase": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "startPracticeDate": {
+      "type": "date",
+      "required": true,
+      "default": "2023-11-26"
+    },
+    "endPracticeDate": {
+      "type": "date",
+      "required": true,
+      "default": "2023-11-30"
+    },
+    "practiceTypes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::practice-type.practice-type"
+    },
+    "currentPracticeType": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::practice-type.practice-type"
+    }
+  }
+}

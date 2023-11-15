@@ -754,6 +754,36 @@ export interface ApiPharmacyPharmacy extends Schema.CollectionType {
   };
 }
 
+export interface ApiPracticeTypePracticeType extends Schema.CollectionType {
+  collectionName: 'practice_types';
+  info: {
+    singularName: 'practice-type';
+    pluralName: 'practice-types';
+    displayName: 'PracticeType';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::practice-type.practice-type',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::practice-type.practice-type',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSelectedBasesOfPracticeSelectedBasesOfPractice
   extends Schema.CollectionType {
   collectionName: 'selected_bases_of_practices';
@@ -786,6 +816,55 @@ export interface ApiSelectedBasesOfPracticeSelectedBasesOfPractice
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::selected-bases-of-practice.selected-bases-of-practice',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSettingSetting extends Schema.SingleType {
+  collectionName: 'settings';
+  info: {
+    singularName: 'setting';
+    pluralName: 'settings';
+    displayName: 'setting';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    canStudentSelectPracticeBase: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    startPracticeDate: Attribute.Date &
+      Attribute.Required &
+      Attribute.DefaultTo<'2023-11-26'>;
+    endPracticeDate: Attribute.Date &
+      Attribute.Required &
+      Attribute.DefaultTo<'2023-11-30'>;
+    practiceTypes: Attribute.Relation<
+      'api::setting.setting',
+      'oneToMany',
+      'api::practice-type.practice-type'
+    >;
+    currentPracticeType: Attribute.Relation<
+      'api::setting.setting',
+      'oneToOne',
+      'api::practice-type.practice-type'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::setting.setting',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::setting.setting',
       'oneToOne',
       'admin::user'
     > &
@@ -853,7 +932,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::group.group': ApiGroupGroup;
       'api::pharmacy.pharmacy': ApiPharmacyPharmacy;
+      'api::practice-type.practice-type': ApiPracticeTypePracticeType;
       'api::selected-bases-of-practice.selected-bases-of-practice': ApiSelectedBasesOfPracticeSelectedBasesOfPractice;
+      'api::setting.setting': ApiSettingSetting;
       'api::student.student': ApiStudentStudent;
     }
   }
