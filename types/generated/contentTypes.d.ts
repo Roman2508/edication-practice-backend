@@ -791,6 +791,7 @@ export interface ApiSelectedBasesOfPracticeSelectedBasesOfPractice
     singularName: 'selected-bases-of-practice';
     pluralName: 'selected-bases-of-practices';
     displayName: 'selectedBasesOfPractice';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -806,6 +807,8 @@ export interface ApiSelectedBasesOfPracticeSelectedBasesOfPractice
       'oneToOne',
       'api::pharmacy.pharmacy'
     >;
+    startPractiseTerm: Attribute.Date;
+    endPractiseTerm: Attribute.Date;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

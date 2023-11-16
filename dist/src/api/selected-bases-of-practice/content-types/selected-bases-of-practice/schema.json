@@ -4,7 +4,8 @@
     "info": {
         "singularName": "selected-bases-of-practice",
         "pluralName": "selected-bases-of-practices",
-        "displayName": "selectedBasesOfPractice"
+        "displayName": "selectedBasesOfPractice",
+        "description": ""
     },
     "options": {
         "draftAndPublish": false
@@ -20,6 +21,12 @@
             "type": "relation",
             "relation": "oneToOne",
             "target": "api::pharmacy.pharmacy"
+        },
+        "startPractiseTerm": {
+            "type": "date"
+        },
+        "endPractiseTerm": {
+            "type": "date"
         }
     }
 }
