@@ -36,8 +36,12 @@
     "legalName": {
       "type": "string"
     },
-    "number": {
+    "headOfPractice": {
       "type": "string"
+    },
+    "number": {
+      "default": 0,
+      "type": "integer"
     }
   }
 }

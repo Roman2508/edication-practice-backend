@@ -736,7 +736,8 @@ export interface ApiPharmacyPharmacy extends Schema.CollectionType {
     places: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<1>;
     contractNumber: Attribute.String & Attribute.Required;
     legalName: Attribute.String;
-    number: Attribute.String;
+    headOfPractice: Attribute.String;
+    number: Attribute.Integer & Attribute.DefaultTo<0>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
