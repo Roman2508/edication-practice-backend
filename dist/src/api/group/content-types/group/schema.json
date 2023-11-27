@@ -20,11 +20,11 @@
             "default": 1,
             "max": 9
         },
-        "student": {
+        "students": {
             "type": "relation",
-            "relation": "manyToOne",
+            "relation": "oneToMany",
             "target": "api::student.student",
-            "inversedBy": "group"
+            "mappedBy": "group"
         }
     }
 }

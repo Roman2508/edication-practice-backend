@@ -36,9 +36,9 @@
     },
     "group": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToOne",
       "target": "api::group.group",
-      "mappedBy": "student"
+      "inversedBy": "students"
     },
     "phone": {
       "type": "string"

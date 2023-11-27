@@ -695,9 +695,9 @@ export interface ApiGroupGroup extends Schema.CollectionType {
         max: 9;
       }> &
       Attribute.DefaultTo<1>;
-    student: Attribute.Relation<
+    students: Attribute.Relation<
       'api::group.group',
-      'manyToOne',
+      'oneToMany',
       'api::student.student'
     >;
     createdAt: Attribute.DateTime;
@@ -896,7 +896,7 @@ export interface ApiStudentStudent extends Schema.CollectionType {
       Attribute.DefaultTo<'student'>;
     group: Attribute.Relation<
       'api::student.student',
-      'oneToMany',
+      'manyToOne',
       'api::group.group'
     >;
     phone: Attribute.String;
